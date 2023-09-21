@@ -33,42 +33,37 @@ namespace Dimitri_Brancourt_WAF
             InitializeComponent();
         }
 
+        // Main function which makes the start and end of game, and handles the collisions
+        // Also allows to inplement the player movement
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
+            // player movement, the verification of the keys are below this function
             txtScore.Text = "Score: " + score;
-
             player.Top += jumpSpeed;
 
-            if (goLeft == true)
-            {
+            if (goLeft)
                 player.Left -= playerSpeed;
-            }
-            if (goRight == true)
-            {
+            
+            if (goRight)
                 player.Left += playerSpeed;
-            }
 
-            if (jumping == true && force < 0)
-            {
+            if (jumping && force < 0)
                 jumping = false;
-            }
+            
 
-            if (jumping == true)
+            if (jumping)
             {
-                jumpSpeed = -8;
+                jumpSpeed = -9;
                 force -= 1;
             }
             else
-            {
-                jumpSpeed = 10;
-            }
-
-            foreach(Control x in this.Controls)
+                jumpSpeed = 12;
+            
+            // implementation of the colliders with their tag
+            foreach(Control x in Controls)
             {
                 if (x is PictureBox)
                 {
-
-
                     if ((string)x.Tag == "platform")
                     {
                         if (player.Bounds.IntersectsWith(x.Bounds))
@@ -77,12 +72,8 @@ namespace Dimitri_Brancourt_WAF
                             player.Top = x.Top - player.Height;
 
 
-                            if ((string)x.Name == "horizontalPlatform" && goLeft == false || (string)x.Name == "horizontalPlatform" && goRight == false)
-                            {
+                            if (x.Name == "horizontalPlatform" && goLeft == false || x.Name == "horizontalPlatform" && goRight == false)
                                 player.Left -= horizontalSpeed;
-                            }
-
-
                         }
 
                         x.BringToFront();
@@ -105,65 +96,53 @@ namespace Dimitri_Brancourt_WAF
                         {
                             gameTimer.Stop();
                             isGameOver = true;
-                            txtScore.Text = "Score: " + score + Environment.NewLine + "You were killed in your journey!!";
+                            txtScore.Text = "Score: " + score + Environment.NewLine + "You got chomped!!";
                         }
                     }
 
                 }
             }
-
-
+            
             horizontalPlatform.Left -= horizontalSpeed;
 
             if (horizontalPlatform.Left < 0 || horizontalPlatform.Left + horizontalPlatform.Width > this.ClientSize.Width)
-            {
                 horizontalSpeed = -horizontalSpeed;
-            }
-
+            
             verticalPlatform.Top += verticalSpeed;
 
             if (verticalPlatform.Top < 195 || verticalPlatform.Top > 581)
-            {
                 verticalSpeed = -verticalSpeed;
-            }
-
-
+            
             enemyOne.Left -= enemyOneSpeed;
 
             if (enemyOne.Left < pictureBox5.Left || enemyOne.Left + enemyOne.Width > pictureBox5.Left + pictureBox5.Width)
-            {
                 enemyOneSpeed = -enemyOneSpeed;
-            }
-
+            
             enemyTwo.Left += enemyTwoSpeed;
 
             if (enemyTwo.Left < pictureBox2.Left || enemyTwo.Left + enemyTwo.Width > pictureBox2.Left + pictureBox2.Width)
-            {
                 enemyTwoSpeed = -enemyTwoSpeed;
-            }
-
-
-            if (player.Top + player.Height > this.ClientSize.Height + 50)
+            
+            if (player.Top + player.Height > ClientSize.Height + 50)
             {
                 gameTimer.Stop();
                 isGameOver = true;
-                txtScore.Text = "Score: " + score + Environment.NewLine + "You fell to your death!";
+                txtScore.Text = "Score: " + score + Environment.NewLine + "You fell from high place!";
             }
 
-            if (player.Bounds.IntersectsWith(door.Bounds) && score == 26)
+            if (player.Bounds.IntersectsWith(door.Bounds) && score >= 26)
             {
                 gameTimer.Stop();
                 isGameOver = true;
                 txtScore.Text = "Score: " + score + Environment.NewLine + "Your quest is complete!";
             }
             else
-            {
-                txtScore.Text = "Score: " + score + Environment.NewLine + "Collect all the coins";
-            }
-
-
+            if (!isGameOver)
+                    txtScore.Text = "Score: " + score + Environment.NewLine + "Collect all the coins";
+            
         }
 
+        // verifies if the key corresponding to the movement is maintained
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -180,6 +159,7 @@ namespace Dimitri_Brancourt_WAF
             }
         }
 
+        // verifies if the key is removed
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -193,16 +173,10 @@ namespace Dimitri_Brancourt_WAF
             }
 
             if (jumping)
-            {
                 jumping = false;
-            }
-
+            
             if (e.KeyCode == Keys.Enter && isGameOver)
-            {
                 RestartGame();
-            }
-
-
         }
 
         private void RestartGame()
@@ -216,15 +190,10 @@ namespace Dimitri_Brancourt_WAF
 
             txtScore.Text = "Score: " + score;
 
-            foreach (Control x in this.Controls)
-            {
+            foreach (Control x in Controls)
                 if (x is PictureBox && x.Visible == false)
-                {
                     x.Visible = true;
-                }
-            }
-
-
+            
             // reset the position of player, platform and enemies
 
             player.Left = 72;
@@ -237,8 +206,6 @@ namespace Dimitri_Brancourt_WAF
             verticalPlatform.Top = 581;
 
             gameTimer.Start();
-
-
         }
     }
 }
