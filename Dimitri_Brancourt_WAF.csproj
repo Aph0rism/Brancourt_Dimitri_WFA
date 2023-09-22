@@ -84,6 +84,15 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Resources\e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" />
+      <Content Include="Resources\idle1.png" />
+      <Content Include="Resources\idle2_removebg_preview.png" />
+      <Content Include="Resources\jump1.png" />
+      <Content Include="Resources\run1_removebg_preview.png" />
+      <Content Include="Resources\run2_removebg_preview.png" />
+      <Content Include="Resources\run3_removebg_preview.png" />
+      <Content Include="Resources\shoot1_removebg_preview.png" />
+      <Content Include="Resources\shoot2_removebg_preview.png" />
+      <Content Include="Resources\shoot3_removebg_preview.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

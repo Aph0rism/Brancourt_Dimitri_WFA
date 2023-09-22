@@ -212,7 +212,7 @@
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox8.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("pictureBox8.BackgroundImage")));
-            this.pictureBox8.Location = new System.Drawing.Point(480, 67);
+            this.pictureBox8.Location = new System.Drawing.Point(480, 76);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(169, 30);
             this.pictureBox8.TabIndex = 1;
@@ -233,10 +233,11 @@
             // player
             // 
             this.player.BackColor = System.Drawing.Color.Transparent;
-            this.player.Image = ((System.Drawing.Image) (resources.GetObject("player.Image")));
-            this.player.Location = new System.Drawing.Point(72, 656);
+            this.player.Image = global::Dimitri_Brancourt_WAF.Properties.Resources.shoot3_removebg_preview;
+            this.player.Location = new System.Drawing.Point(72, 623);
             this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(30, 40);
+            this.player.Size = new System.Drawing.Size(57, 73);
+            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.player.TabIndex = 2;
             this.player.TabStop = false;
             // 

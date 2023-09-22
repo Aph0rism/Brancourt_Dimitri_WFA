@@ -13,7 +13,7 @@ namespace Dimitri_Brancourt_WAF
     public partial class Form1 : Form
     {
 
-        bool goLeft, goRight, jumping, isGameOver;
+        bool goLeft, goRight, jumping, isGameOver, isGrounded;
 
         int jumpSpeed;
         int force;
@@ -21,12 +21,10 @@ namespace Dimitri_Brancourt_WAF
         int playerSpeed = 7;
 
         int horizontalSpeed = 5;
-        int verticalSpeed = 3;
+        int verticalSpeed = 5;
 
         int enemyOneSpeed = 5;
-        int enemyTwoSpeed = 3;
-
-
+        private int enemyTwoSpeed = 3;
 
         public Form1()
         {
@@ -42,14 +40,21 @@ namespace Dimitri_Brancourt_WAF
             player.Top += jumpSpeed;
 
             if (goLeft)
+            {
                 player.Left -= playerSpeed;
-            
+            }
+
             if (goRight)
+            {
                 player.Left += playerSpeed;
+            }
 
             if (jumping && force < 0)
                 jumping = false;
-            
+            /*if (!isGrounded)
+                player.Image = Image.FromFile("jump1.png");
+            if (isGrounded)
+                player.Image = Image.FromFile("idle1.png");*/
 
             if (jumping)
             {
@@ -66,20 +71,22 @@ namespace Dimitri_Brancourt_WAF
                 {
                     if ((string)x.Tag == "platform")
                     {
-                        if (player.Bounds.IntersectsWith(x.Bounds))
+                        if (player.Bounds.IntersectsWith(x.Bounds) && !isGrounded)
                         {
-                            force = 8;
+                            force = 9;
                             player.Top = x.Top - player.Height;
-
+                            isGrounded = true;
 
                             if (x.Name == "horizontalPlatform" && goLeft == false || x.Name == "horizontalPlatform" && goRight == false)
                                 player.Left -= horizontalSpeed;
                         }
 
                         x.BringToFront();
-
                     }
 
+                    if ((string) x.Tag != "platform")
+                        isGrounded = false;
+                    
                     if ((string)x.Tag == "coin")
                     {
                         if (player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
@@ -87,6 +94,7 @@ namespace Dimitri_Brancourt_WAF
                             x.Visible = false;
                             score++;
                         }
+                        x.SendToBack();
                     }
 
 
@@ -102,24 +110,19 @@ namespace Dimitri_Brancourt_WAF
 
                 }
             }
-            
+            // Moving plateforms, with their speed and their max position
             horizontalPlatform.Left -= horizontalSpeed;
-
             if (horizontalPlatform.Left < 0 || horizontalPlatform.Left + horizontalPlatform.Width > this.ClientSize.Width)
                 horizontalSpeed = -horizontalSpeed;
-            
             verticalPlatform.Top += verticalSpeed;
-
             if (verticalPlatform.Top < 195 || verticalPlatform.Top > 581)
                 verticalSpeed = -verticalSpeed;
             
+            // Moving enemies, with their speed and their max position
             enemyOne.Left -= enemyOneSpeed;
-
             if (enemyOne.Left < pictureBox5.Left || enemyOne.Left + enemyOne.Width > pictureBox5.Left + pictureBox5.Width)
                 enemyOneSpeed = -enemyOneSpeed;
-            
             enemyTwo.Left += enemyTwoSpeed;
-
             if (enemyTwo.Left < pictureBox2.Left || enemyTwo.Left + enemyTwo.Width > pictureBox2.Left + pictureBox2.Width)
                 enemyTwoSpeed = -enemyTwoSpeed;
             
@@ -141,7 +144,7 @@ namespace Dimitri_Brancourt_WAF
                     txtScore.Text = "Score: " + score + Environment.NewLine + "Collect all the coins";
             
         }
-
+        
         // verifies if the key corresponding to the movement is maintained
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -151,6 +154,7 @@ namespace Dimitri_Brancourt_WAF
                     goLeft = true;
                     break;
                 case Keys.D:
+                    player.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
                     goRight = true;
                     break;
                 case Keys.Z when jumping == false:
