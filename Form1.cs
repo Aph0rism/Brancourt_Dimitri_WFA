@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+ using System.Data.SqlTypes;
+ using System.Drawing;
 using System.Linq;
-using System.Text;
+ using System.Media;
+ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,7 +15,8 @@ namespace Dimitri_Brancourt_WAF
     public partial class Form1 : Form
     {
 
-        bool goLeft, goRight, jumping, isGameOver, isGrounded;
+        bool goLeft, goRight, jumping, isGameOver, isGrounded, isRunning;
+        private bool isLeft = true;
 
         int jumpSpeed;
         int force;
@@ -25,16 +28,22 @@ namespace Dimitri_Brancourt_WAF
 
         int enemyOneSpeed = 5;
         private int enemyTwoSpeed = 3;
+        
+        private SoundPlayer music;
+        
+        
 
         public Form1()
         {
             InitializeComponent();
+            music = new SoundPlayer("Resources/badApple.wav");
         }
 
         // Main function which makes the start and end of game, and handles the collisions
         // Also allows to inplement the player movement
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
+            music.PlayLooping();
             // player movement, the verification of the keys are below this function
             txtScore.Text = "Score: " + score;
             player.Top += jumpSpeed;
@@ -51,10 +60,6 @@ namespace Dimitri_Brancourt_WAF
 
             if (jumping && force < 0)
                 jumping = false;
-            /*if (!isGrounded)
-                player.Image = Image.FromFile("jump1.png");
-            if (isGrounded)
-                player.Image = Image.FromFile("idle1.png");*/
 
             if (jumping)
             {
@@ -64,67 +69,87 @@ namespace Dimitri_Brancourt_WAF
             else
                 jumpSpeed = 12;
             
-            // implementation of the colliders with their tag
-            foreach(Control x in Controls)
+            // Verification of collisions between player and platforms
+            foreach (Control x in Controls)
             {
                 if (x is PictureBox)
                 {
                     if ((string)x.Tag == "platform")
                     {
-                        if (player.Bounds.IntersectsWith(x.Bounds) && !isGrounded)
+                        if (player.Bounds.IntersectsWith(x.Bounds))
                         {
                             force = 9;
                             player.Top = x.Top - player.Height;
-                            isGrounded = true;
 
-                            if (x.Name == "horizontalPlatform" && goLeft == false || x.Name == "horizontalPlatform" && goRight == false)
+                            if (x.Name == "horizontalPlateform" && goLeft == false || x.Name == "horizontalPlateform" && goRight == false)
+                            {
                                 player.Left -= horizontalSpeed;
+                            }
                         }
-
-                        x.BringToFront();
                     }
+                }
+            }
 
-                    if ((string) x.Tag != "platform")
-                        isGrounded = false;
-                    
+            // Verification of collisions with coins
+            foreach (Control x in Controls)
+            {
+                if (x is PictureBox)
+                {
                     if ((string)x.Tag == "coin")
                     {
-                        if (player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
+                        if (player.Bounds.IntersectsWith(x.Bounds) && x.Visible)
                         {
                             x.Visible = false;
                             score++;
                         }
-                        x.SendToBack();
                     }
+                }
+            }
 
-
+            // Verification of collisions with enemies
+            foreach (Control x in Controls)
+            {
+                if (x is PictureBox)
+                {
                     if ((string)x.Tag == "enemy")
                     {
                         if (player.Bounds.IntersectsWith(x.Bounds))
                         {
                             gameTimer.Stop();
                             isGameOver = true;
-                            txtScore.Text = "Score: " + score + Environment.NewLine + "You got chomped!!";
+                            txtScore.Text = "Score: " + score + Environment.NewLine + "You were chomped !!";
                         }
                     }
-
                 }
+
+                x.BringToFront();
             }
+            
             // Moving plateforms, with their speed and their max position
             horizontalPlatform.Left -= horizontalSpeed;
-            if (horizontalPlatform.Left < 0 || horizontalPlatform.Left + horizontalPlatform.Width > this.ClientSize.Width)
+            if (horizontalPlatform.Left < 0 || horizontalPlatform.Left + horizontalPlatform.Width > ClientSize.Width)
                 horizontalSpeed = -horizontalSpeed;
+            
             verticalPlatform.Top += verticalSpeed;
             if (verticalPlatform.Top < 195 || verticalPlatform.Top > 581)
                 verticalSpeed = -verticalSpeed;
             
             // Moving enemies, with their speed and their max position
             enemyOne.Left -= enemyOneSpeed;
-            if (enemyOne.Left < pictureBox5.Left || enemyOne.Left + enemyOne.Width > pictureBox5.Left + pictureBox5.Width)
+            if (enemyOne.Left < pictureBox5.Left ||
+                enemyOne.Left + enemyOne.Width > pictureBox5.Left + pictureBox5.Width)
+            {
+                enemyOne.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
                 enemyOneSpeed = -enemyOneSpeed;
+            }
+            
             enemyTwo.Left += enemyTwoSpeed;
-            if (enemyTwo.Left < pictureBox2.Left || enemyTwo.Left + enemyTwo.Width > pictureBox2.Left + pictureBox2.Width)
+            if (enemyTwo.Left < pictureBox2.Left ||
+                enemyTwo.Left + enemyTwo.Width > pictureBox2.Left + pictureBox2.Width)
+            {
+                enemyTwo.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
                 enemyTwoSpeed = -enemyTwoSpeed;
+            }
             
             if (player.Top + player.Height > ClientSize.Height + 50)
             {
@@ -151,10 +176,21 @@ namespace Dimitri_Brancourt_WAF
             switch (e.KeyCode)
             {
                 case Keys.Q:
+                    if (!isRunning)
+                    {
+                        player.Image = Properties.Resources.running;
+                        isRunning = true;
+                    }
+                    
                     goLeft = true;
                     break;
                 case Keys.D:
-                    player.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    if (!isRunning)
+                    {
+                        player.Image = Properties.Resources.running2;
+                        isRunning = true;
+                    }
+                    
                     goRight = true;
                     break;
                 case Keys.Z when jumping == false:
@@ -170,9 +206,13 @@ namespace Dimitri_Brancourt_WAF
             {
                 case Keys.Q:
                     goLeft = false;
+                    isRunning = false;
+                    player.Image = Properties.Resources.idle1;
                     break;
                 case Keys.D:
                     goRight = false;
+                    isRunning = false;
+                    player.Image = Properties.Resources.idle1;
                     break;
             }
 
@@ -200,8 +240,8 @@ namespace Dimitri_Brancourt_WAF
             
             // reset the position of player, platform and enemies
 
-            player.Left = 72;
-            player.Top = 656;
+            player.Left = 26;
+            player.Top = 623;
 
             enemyOne.Left = 471;
             enemyTwo.Left = 360;

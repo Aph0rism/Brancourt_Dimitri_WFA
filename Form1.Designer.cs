@@ -41,7 +41,6 @@
             this.horizontalPlatform = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.verticalPlatform = new System.Windows.Forms.PictureBox();
-            this.player = new System.Windows.Forms.PictureBox();
             this.door = new System.Windows.Forms.PictureBox();
             this.enemyOne = new System.Windows.Forms.PictureBox();
             this.enemyTwo = new System.Windows.Forms.PictureBox();
@@ -76,6 +75,7 @@
             this.pictureBox35 = new System.Windows.Forms.PictureBox();
             this.pictureBox36 = new System.Windows.Forms.PictureBox();
             this.pictureBox37 = new System.Windows.Forms.PictureBox();
+            this.player = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox3)).BeginInit();
@@ -85,7 +85,6 @@
             ((System.ComponentModel.ISupportInitialize) (this.horizontalPlatform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.verticalPlatform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.door)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.enemyOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.enemyTwo)).BeginInit();
@@ -119,6 +118,7 @@
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.player)).BeginInit();
             this.SuspendLayout();
             // 
             // txtScore
@@ -230,17 +230,6 @@
             this.verticalPlatform.TabStop = false;
             this.verticalPlatform.Tag = "platform";
             // 
-            // player
-            // 
-            this.player.BackColor = System.Drawing.Color.Transparent;
-            this.player.Image = global::Dimitri_Brancourt_WAF.Properties.Resources.shoot3_removebg_preview;
-            this.player.Location = new System.Drawing.Point(72, 623);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(57, 73);
-            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.player.TabIndex = 2;
-            this.player.TabStop = false;
-            // 
             // door
             // 
             this.door.BackColor = System.Drawing.Color.Transparent;
@@ -269,7 +258,7 @@
             // 
             this.enemyTwo.BackColor = System.Drawing.Color.Transparent;
             this.enemyTwo.Image = ((System.Drawing.Image) (resources.GetObject("enemyTwo.Image")));
-            this.enemyTwo.Location = new System.Drawing.Point(345, 614);
+            this.enemyTwo.Location = new System.Drawing.Point(469, 612);
             this.enemyTwo.Name = "enemyTwo";
             this.enemyTwo.Size = new System.Drawing.Size(27, 36);
             this.enemyTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -673,6 +662,19 @@
             this.pictureBox37.TabStop = false;
             this.pictureBox37.Tag = "coin";
             // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.Transparent;
+            this.player.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.player.Image = global::Dimitri_Brancourt_WAF.Properties.Resources.idle1;
+            this.player.Location = new System.Drawing.Point(26, 623);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(48, 82);
+            this.player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.player.TabIndex = 34;
+            this.player.TabStop = false;
+            this.player.Tag = "player";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -681,6 +683,7 @@
             this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(654, 792);
+            this.Controls.Add(this.player);
             this.Controls.Add(this.pictureBox36);
             this.Controls.Add(this.pictureBox37);
             this.Controls.Add(this.pictureBox31);
@@ -712,7 +715,6 @@
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox26);
             this.Controls.Add(this.door);
-            this.Controls.Add(this.player);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.horizontalPlatform);
             this.Controls.Add(this.pictureBox6);
@@ -739,7 +741,6 @@
             ((System.ComponentModel.ISupportInitialize) (this.horizontalPlatform)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.verticalPlatform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.door)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.enemyOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.enemyTwo)).EndInit();
@@ -773,8 +774,11 @@
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox35)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox36)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.player)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.PictureBox player;
 
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.PictureBox pictureBox22;
@@ -809,7 +813,6 @@
         private System.Windows.Forms.PictureBox horizontalPlatform;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox verticalPlatform;
-        private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.PictureBox door;
         private System.Windows.Forms.PictureBox enemyOne;
         private System.Windows.Forms.PictureBox enemyTwo;

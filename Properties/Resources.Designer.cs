@@ -61,6 +61,15 @@ namespace Dimitri_Brancourt_WAF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string badApple {
+            get {
+                return ResourceManager.GetString("badApple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap e02ce86bcfd6d1d6c2f775afb3ec8c01_w200 {
@@ -83,16 +92,6 @@ namespace Dimitri_Brancourt_WAF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap idle2_removebg_preview {
-            get {
-                object obj = ResourceManager.GetObject("idle2_removebg_preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap jump1 {
             get {
                 object obj = ResourceManager.GetObject("jump1", resourceCulture);
@@ -103,9 +102,9 @@ namespace Dimitri_Brancourt_WAF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap run1_removebg_preview {
+        internal static System.Drawing.Bitmap running {
             get {
-                object obj = ResourceManager.GetObject("run1_removebg_preview", resourceCulture);
+                object obj = ResourceManager.GetObject("running", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +112,9 @@ namespace Dimitri_Brancourt_WAF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap run2_removebg_preview {
+        internal static System.Drawing.Bitmap running2 {
             get {
-                object obj = ResourceManager.GetObject("run2_removebg_preview", resourceCulture);
+                object obj = ResourceManager.GetObject("running2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,39 +122,9 @@ namespace Dimitri_Brancourt_WAF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap run3_removebg_preview {
+        internal static System.Drawing.Bitmap shooting {
             get {
-                object obj = ResourceManager.GetObject("run3_removebg_preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shoot1_removebg_preview {
-            get {
-                object obj = ResourceManager.GetObject("shoot1_removebg_preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shoot2_removebg_preview {
-            get {
-                object obj = ResourceManager.GetObject("shoot2_removebg_preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shoot3_removebg_preview {
-            get {
-                object obj = ResourceManager.GetObject("shoot3_removebg_preview", resourceCulture);
+                object obj = ResourceManager.GetObject("shooting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
