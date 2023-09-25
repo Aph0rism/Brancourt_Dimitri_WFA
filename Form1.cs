@@ -36,7 +36,7 @@ namespace Dimitri_Brancourt_WAF
         public Form1()
         {
             InitializeComponent();
-            music = new SoundPlayer("Resources/badApple.wav");
+            music = new SoundPlayer(Properties.Resources.badApple);
         }
 
         // Main function which makes the start and end of game, and handles the collisions

@@ -61,15 +61,6 @@ namespace Dimitri_Brancourt_WAF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string badApple {
-            get {
-                return ResourceManager.GetString("badApple", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap e02ce86bcfd6d1d6c2f775afb3ec8c01_w200 {
@@ -126,6 +117,12 @@ namespace Dimitri_Brancourt_WAF.Properties {
             get {
                 object obj = ResourceManager.GetObject("shooting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream badApple {
+            get {
+                return ResourceManager.GetStream("badApple", resourceCulture);
             }
         }
     }
