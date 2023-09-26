@@ -52,10 +52,19 @@
         <Compile Include="Form1.Designer.cs">
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
+        <Compile Include="menu.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="menu.Designer.cs">
+          <DependentUpon>menu.cs</DependentUpon>
+        </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <EmbeddedResource Include="Form1.resx">
           <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="menu.resx">
+          <DependentUpon>menu.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
@@ -85,10 +94,13 @@
     <ItemGroup>
       <Content Include="Resources\e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" />
       <Content Include="Resources\idle1.png" />
+      <Content Include="Resources\idle2.png" />
       <Content Include="Resources\jump1.png" />
+      <Content Include="Resources\menu.jpg" />
       <Content Include="Resources\running.gif" />
       <Content Include="Resources\running2.gif" />
       <Content Include="Resources\shooting.gif" />
+      <Content Include="Resources\shooting2.gif" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
