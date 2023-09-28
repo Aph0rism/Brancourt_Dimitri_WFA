@@ -97,6 +97,7 @@
       <Content Include="Resources\idle2.png" />
       <Content Include="Resources\jump1.png" />
       <Content Include="Resources\menu.jpg" />
+      <Content Include="Resources\menu.png" />
       <Content Include="Resources\running.gif" />
       <Content Include="Resources\running2.gif" />
       <Content Include="Resources\shooting.gif" />
