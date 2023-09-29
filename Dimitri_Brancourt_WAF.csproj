@@ -111,6 +111,8 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Resources\arrow.png" />
+      <Content Include="Resources\boss.png" />
+      <Content Include="Resources\boss2.png" />
       <Content Include="Resources\e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" />
       <Content Include="Resources\idle1.png" />
       <Content Include="Resources\idle2.png" />
@@ -118,6 +120,7 @@
       <Content Include="Resources\menu.jpg" />
       <Content Include="Resources\menu.png" />
       <Content Include="Resources\pics.png" />
+      <Content Include="Resources\rocket.png" />
       <Content Include="Resources\running.gif" />
       <Content Include="Resources\running2.gif" />
       <Content Include="Resources\shooting.gif" />
