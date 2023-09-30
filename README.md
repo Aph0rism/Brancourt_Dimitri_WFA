@@ -40,8 +40,4 @@ Ce projet bien que frustrant au début s'est avéré plus sympa vers la fin,
 je dirais simplement que le temps donné était un peu court pour pouvoir l'éxploiter à fond.
 Sinon, au niveau de l'organisation, je pense avoir pu remplir mes objectifs au jour le jour
 et même parfois être aller plus loin.<br>
-<<<<<<< HEAD
 Merci pour votre attention.
-=======
-Merci pour votre attention.
->>>>>>> 4b10310bdd05e38c0b25f1c4cb0c6823b6ccf667
